@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wourld Soft</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0a0a1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        .navbar {
+            background-color: #1a1a2e;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #980aff;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #980aff;
+        }
+        .navbar a {
+            color: #980aff;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #2a2a3e;
+            box-shadow: 0 0 10px #980aff;
+        }
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd66f30');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(152, 10, 255, 0.2), transparent);
+            z-index: 0;
+        }
+        .hero h1 {
+            font-size: 3em;
+            color: #980aff;
+            text-shadow: 0 0 15px #980aff;
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+        .hero p {
+            font-size: 1.2em;
+            max-width: 600px;
+            z-index: 1;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 2em;
+            color: #980aff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #980aff;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .benefit-card {
+            background: linear-gradient(145deg, #1a1a2e, #2a2a3e);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(152, 10, 255, 0.3);
+        }
+        .benefit-card h3 {
+            font-size: 1.2em;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+        .social a {
+            color: #980aff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .social a:hover {
+            text-decoration: underline;
+            text-shadow: 0 0 10px #980aff;
+        }
+        .pricing {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .price-item {
+            background: linear-gradient(145deg, #1a1a2e, #2a2a3e);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .price-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(152, 10, 255, 0.3);
+        }
+        .price-item p {
+            font-size: 1.2em;
+            margin: 0 0 10px;
+        }
+        .price-item a.button {
+            display: inline-block;
+            background: linear-gradient(45deg, #980aff, #7b00d3);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #e0e0e0;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .price-item a.button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #980aff;
+        }
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .review-card {
+            background: linear-gradient(145deg, #1a1a2e, #2a2a3e);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(152, 10, 255, 0.3);
+        }
+        .review-card p {
+            font-style: italic;
+        }
+        .review-card .author {
+            font-weight: bold;
+            color: #980aff;
+            margin-top: 10px;
+        }
+        .faq {
+            margin-bottom: 40px;
+        }
+        .faq-item {
+            background: linear-gradient(145deg, #1a1a2e, #2a2a3e);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .faq-item h3 {
+            font-size: 1.2em;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+        .footer {
+            background: linear-gradient(45deg, #1a1a2e, #2a2a3e);
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 40px;
+            border-top: 1px solid #980aff;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Wourld Soft</div>
+        <div>
+            <a href="https://t.me/Wourld_soft">Купить</a>
+            <a href="https://t.me/WourldManager">Поддержка</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>Добро пожаловать в Wourld Soft</h1>
+        <p>Ваш лучший инструмент для пробива — быстрый, надежный и удобный.</p>
+    </div>
+
+    <div class="container">
+        <h2>О нас</h2>
+        <p>Мы предоставляем вам лучший инструмент для пробива, который сделает вашу работу еще более эффективной.</p>
+        <p>Наши разработчики постоянно работают над улучшениями, и скоро мы выпустим Wourld Soft с новыми функциями. Следите за новостями в нашем Telegram: <a href="https://t.me/Wourld_soft" class="social">@Wourld_soft</a>. Для поддержки обращайтесь к нашему менеджеру: <a href="https://t.me/WourldManager" class="social">@WourldManager</a>.</p>
+
+        <h2>Наши преимущества</h2>
+        <div class="benefits">
+            <div class="benefit-card">
+                <h3>Высокая скорость</h3>
+                <p>Наш софт обеспечивает молниеносную работу, чтобы вы могли экономить время.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Надежность</h3>
+                <p>Мы гарантируем стабильную работу без сбоев даже при интенсивном использовании.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Частые обновления</h3>
+                <p>Мы регулярно обновляем софт, добавляя новые функции и улучшения.</p>
+            </div>
+            <div class="benefit-card">
+                <h3>Лучшая поддержка</h3>
+                <p>Наша команда поддержки всегда готова помочь вам с любыми вопросами.</p>
+            </div>
+        </div>
+
+        <h2>Отзывы наших пользователей</h2>
+        <div class="reviews">
+            <div class="review-card">
+                <p>"+реп купил софтик у @Banhoto все четенько отвечает быстро проверил софт выдало инфы хуева туча всем советую"</p>
+                <p class="author">- От Radarov</p>
+            </div>
+            <div class="review-card">
+                <p>"@Banhoto тип вообще красава,пообщались и сделал скидку,работает софт четенько,берите не ошибетесь😘"</p>
+                <p class="author">- От 917 AVAC</p>
+            </div>
+            <div class="review-card">
+                <p>"Софт работает без сбоев, обновления выходят регулярно Отличный выбор"</p>
+                <p class="author">- От тонк!с</p>
+            </div>
+        </div>
+
+        <h2>Часто задаваемые вопросы</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <h3>Как начать использовать Wourld Soft?</h3>
+                <p>Выберите подходящий тариф, оплатите его, и вы получите доступ к софту сразу после подтверждения платежа.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Что делать, если возникли проблемы с софтом?</h3>
+                <p>Напишите нашему менеджеру в Telegram: <a href="https://t.me/WourldManager" class="social">@WourldManager</a>. Мы оперативно поможем!</p>
+            </div>
+        </div>
+
+        <h2>Цены</h2>
+        <div class="pricing">
+            <div class="price-item">
+                <p>1 день - 150 ₽</p>
+                <a href="https://t.me/Wourld_soft" class="button">Купить</a>
+            </div>
+            <div class="price-item">
+                <p>3 дня - 350 ₽</p>
+                <a href="https://t.me/Wourld_soft" class="button">Купить</a>
+            </div>
+            <div class="price-item">
+                <p>7 дней - 350 ₽</p>
+                <a href="https://t.me/Wourld_soft" class="button">Купить</a>
+            </div>
+            <div class="price-item">
+                <p>31 день - 600 ₽</p>
+                <a href="https://t.me/Wourld_soft" class="button">Купить</a>
+            </div>
+            <div class="price-item">
+                <p>Навсегда - 999 ₽</p>
+                <a href="https://t.me/Wourld_soft" class="button">Купить</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© Wourld Soft 2025</p>
+    </div>
+</body>
+</html>
